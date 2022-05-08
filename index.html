@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>weekreport</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <header>週報アプリ</header>
+        <!-- <div id="howto">
+            使い方
+            <ul>
+                <li>週報の内容の週の月曜日を選択し、反映を押す</li>
+                <li>実施時間と内容等々を入力する(10時ちょうどなら分は0または空白でおけ)</li>
+                <li>休みの場合は、時間は空白でおけ</li>
+                <li>サイト上部にあるgmailリンクから飛び先週の総研究時間を確認し、研究時間に入力する(要改善)</li>
+                <li>作成を押すと週報のタイトルと内容が表示される</li>
+            </ul>
+        </div> -->
+        <div>
+            <input type="date" id="dateData">からの週報 <input type="button" value="反映" id="dateButton">
+            <a href="https://mail.google.com/mail/" target="blank">gmail</a>
+        </div>
+        <div>
+            【活動内容】<br>
+            <span id="date1">　月　日(　)</span>
+            <input type="number" id="startHour1" class="inputfield">時<input type="number"id="startMinute1" class="inputfield">分から
+            <input type="number" id="endHour1" class="inputfield">時<input type="number" id="endMinute1" class="inputfield">分まで
+            <input type="checkbox" id="went1">登校
+            <input type="checkbox" id="rest1" onchange="setRest(this)">休み
+            <br>
+            <textarea id="task1" rows="4"  class="taskfield"></textarea>
+        </div>
+        <div>
+            <span id="date2">　月　日(　)</span>
+            <input type="number" id="startHour2" class="inputfield">時<input type="number"id="startMinute2" class="inputfield">分から
+            <input type="number" id="endHour2" class="inputfield">時<input type="number" id="endMinute2" class="inputfield">分まで
+            <input type="checkbox" id="went2">登校
+            <input type="checkbox" id="rest2" onchange="setRest(this)">休み
+            <br>
+            <textarea id="task2" rows="4"  class="taskfield"></textarea>
+        </div>
+        <div>
+            <span id="date3">　月　日(　)</span>
+            <input type="number" id="startHour3" class="inputfield">時<input type="number"id="startMinute3" class="inputfield">分から
+            <input type="number" id="endHour3" class="inputfield">時<input type="number" id="endMinute3" class="inputfield">分まで
+            <input type="checkbox" id="went3">登校
+            <input type="checkbox" id="rest3" onchange="setRest(this)">休み
+            <br>
+            <textarea id="task3" rows="4"  class="taskfield"></textarea>
+        </div>
+        <div>
+            <span id="date4">　月　日(　)</span>
+            <input type="number" id="startHour4" class="inputfield">時<input type="number"id="startMinute4" class="inputfield">分から
+            <input type="number" id="endHour4" class="inputfield">時<input type="number" id="endMinute4" class="inputfield">分まで
+            <input type="checkbox" id="went4">登校
+            <input type="checkbox" id="rest4" onchange="setRest(this)">休み
+            <br>
+            <textarea id="task4" rows="4"  class="taskfield"></textarea>
+        </div>
+        <div>
+            <span id="date5">　月　日(　)</span>
+            <input type="number" id="startHour5" class="inputfield">時<input type="number"id="startMinute5" class="inputfield">分から
+            <input type="number" id="endHour5" class="inputfield">時<input type="number" id="endMinute5" class="inputfield">分まで
+            <input type="checkbox" id="went5">登校
+            <input type="checkbox" id="rest5" onchange="setRest(this)">休み
+            <br>
+            <textarea id="task5" rows="4"  class="taskfield"></textarea>
+        </div>
+        <div>
+            【研究時間】前回まで<input type="number" id="totalHour" class="inputfield">時<input type="number" id="totalMinute" class="inputfield">分
+        </div>
+        <div>
+            【読んだ論文】(論文誌、Vol.巻、No.号、pp.ページ数、年)<br>
+            <textarea id="study" rows="4" cols="80"></textarea>
+        </div>
+        <div>
+            【今週の予定】<br>
+            <textarea id="schedule" name="" rows="2" cols="80">今週は、</textarea>
+        </div>
+        <div><input type="button" id="createButton" value="作成"></div>
+        <div><textarea id="output" cols="80" rows="20"></textarea></div>
+
+        <script type="text/javascript" src="index.js"></script>
+    </body>
+</html>
