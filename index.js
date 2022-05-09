@@ -1,23 +1,38 @@
 let dateText;
+let prevWeek;
+// let createPrevWeek;
 let dayOfWeek = ["(月)","(火)","(水)","(木)","(金)"];
 
 document.getElementById('dateButton').addEventListener('click',() => {
     dateText = document.getElementById('dateData').value.split('-');
+    dateText[0] = Number(dateText[0]);
     dateText[1] = Number(dateText[1]);
     dateText[2] = Number(dateText[2]);
+
+    prevWeek = new Date(dateText[0],dateText[1]-1,dateText[2]);//var prevWeek = new Date(2022,5,24);
+
     for (let i=0; i<5; i++) {
-        let tex = "date"+(i+1);
-        document.getElementById(tex).innerText = dateText[1]+"月"+(dateText[2]+i)+"日"+dayOfWeek[i];
+        let displayData = (prevWeek.getMonth()+1)+"月"+prevWeek.getDate()+"日";
+        let displayField = "date"+(i+1);
+        document.getElementById(displayField).innerText = displayData;
+        prevWeek.setDate(prevWeek.getDate() + 1);
     }
+    prevWeek.setDate(prevWeek.getDate() -5);
 });
+
 
 document.getElementById('createButton').addEventListener('click',() => {
     addTime();
     let output = "";
-    output = "週報("+dateText[0]+"年"+dateText[1] +"月"+(dateText[2]+7)+"日)\n";
+    prevWeek.setDate(prevWeek.getDate() + 7);
+    output = "週報("+prevWeek.getFullYear()+"年"+(prevWeek.getMonth()+1) +"月"+prevWeek.getDate()+"日)\n";
     output += "（先生の名前）先生\n\n";
     output += "お世話になっております。\n（研究室名）研究室（学年）の（名前）です。\n";
-    output += dateText[1] +"月"+dateText[2]+"日から"+ dateText[1]+"月"+(dateText[2]+4)+"日までの週報です。\n\n";
+    prevWeek.setDate(prevWeek.getDate() - 7);
+    output += (prevWeek.getMonth()+1) +"月" +prevWeek.getDate() +"日から";
+    prevWeek.setDate(prevWeek.getDate() + 4);
+    output += (prevWeek.getMonth()+1) +"月" +prevWeek.getDate() +"日までの週報です。\n\n";
+    prevWeek.setDate(prevWeek.getDate() - 4);
     output += "【活動内容】\n";
     for (let i=0; i<5; i++){
         let rest = "rest"+(i+1);
@@ -26,7 +41,8 @@ document.getElementById('createButton').addEventListener('click',() => {
             let eHT = "endHour"+(i+1);
             let sMT = "startMinute"+(i+1);
             let eMT = "endMinute"+(i+1);
-            output += dateText[1]+"月"+(dateText[2]+i)+"日"+dayOfWeek[i]+" "
+
+            output += (prevWeek.getMonth()+1)+"月"+prevWeek.getDate()+"日"+dayOfWeek[i]+" "
                 +document.getElementById(sHT).value+":"+zeroJudge(document.getElementById(sMT).value)+"~"
                 +document.getElementById(eHT).value+":"+zeroJudge(document.getElementById(eMT).value)+"\n";
             let went = "went"+(i+1);
@@ -34,6 +50,7 @@ document.getElementById('createButton').addEventListener('click',() => {
             let task = "task"+(i+1);
             output += document.getElementById(task).value+"\n\n";
         }
+        prevWeek.setDate(prevWeek.getDate() + 1);
     }
     output += "【研究時間】\n";
     output += "先週の研究時間："+hour+"時間"+minute+"分\n";
