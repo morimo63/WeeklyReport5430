@@ -1,6 +1,5 @@
 let dateText;
 let prevWeek;
-// let createPrevWeek;
 let dayOfWeek = ["(月)","(火)","(水)","(木)","(金)"];
 
 document.getElementById('dateButton').addEventListener('click',() => {
