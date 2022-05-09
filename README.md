@@ -1,4 +1,4 @@
-# WeekReport
+# WeeklyReport
 週報アプリ
 
 ## 使い方
