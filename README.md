@@ -1,5 +1,6 @@
 # WeeklyReport
 週報アプリ
+https://weekreport5430.web.app/
 
 ## 使い方
 - 週報の内容の週の月曜日を選択し、反映を押す
