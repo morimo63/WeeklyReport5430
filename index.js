@@ -61,6 +61,7 @@ document.getElementById('createButton').addEventListener('click',() => {
     output += "今週もよろしくお願いいたします。";
 
     document.getElementById('output').value = output;
+    prevWeek.setDate(prevWeek.getDate() - 5);
     // console.log(output);
 });
 
