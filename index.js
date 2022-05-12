@@ -2,8 +2,9 @@ let dateText;
 let prevWeek;
 let dayOfWeek = ["(月)","(火)","(水)","(木)","(金)"];
 
-document.getElementById('dateButton').addEventListener('click',() => {
+document.getElementById('dateBtn').addEventListener('click',() => {
     dateText = document.getElementById('dateData').value.split('-');
+    if(dateText[0] == "") return;
     dateText[0] = Number(dateText[0]);
     dateText[1] = Number(dateText[1]);
     dateText[2] = Number(dateText[2]);

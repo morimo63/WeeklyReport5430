@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>weekreport</title>
+        <title>weeklyreport</title>
         <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="modal/modal.css">
     </head>
     <body>
-        <header>週報アプリ</header>
-        <!-- <div id="howto">
-            使い方
-            <ul>
-                <li>週報の内容の週の月曜日を選択し、反映を押す</li>
-                <li>実施時間と内容等々を入力する(10時ちょうどなら分は0または空白でおけ)</li>
-                <li>休みの場合は、時間は空白でおけ</li>
-                <li>サイト上部にあるgmailリンクから飛び先週の総研究時間を確認し、研究時間に入力する(要改善)</li>
-                <li>作成を押すと週報のタイトルと内容が表示される</li>
-            </ul>
-        </div> -->
+        <header>
+            週報アプリ
+            <button id="js-show-popup">使い方</button>
+            <div class="popup" id="js-popup">
+                <div class="popup-inner">
+                    <div class="close-btn" id="js-close-btn">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div>
+                        使い方
+                        <ul>
+                            <li>週報の内容の週の月曜日を選択し、反映を押す</li>
+                            <li>実施時間と内容等々を入力する(10時ちょうどなら分の部分は、0または空白でおけ)</li>
+                            <li>休みの場合は、時間は空白でおけ</li>
+                            <li>サイト上部にあるgmailリンクから飛び先週の総研究時間を確認し、研究時間に入力する(要改善)</li>
+                            <li>作成を押すと週報のタイトルと内容が最後のテキストボックスに表示される</li>
+                        </ul>
+                    </div>
+                    <div>
+                    <input type="button" value="改善・修正・バグ報告" onClick="openWin()"></input>
+                    </div>
+                </div>
+                <div class="black-background" id="js-black-bg"></div>
+            </div>
+        </header>
         <div>
-            <input type="date" id="dateData">からの週報 <input type="button" value="反映" id="dateButton">
-            <a href="https://mail.google.com/mail/" target="blank">gmail</a>
+            <input type="date" id="dateData">からの週報 <input type="button" value="反映" id="dateBtn">
         </div>
         <div>
             【活動内容】<br>
@@ -69,6 +83,7 @@
         </div>
         <div>
             【研究時間】前回まで<input type="number" id="totalHour" class="inputfield">時<input type="number" id="totalMinute" class="inputfield">分
+            <a href="https://mail.google.com/mail/" target="blank">gmail</a>
         </div>
         <div>
             【読んだ論文】(論文誌、Vol.巻、No.号、pp.ページ数、年)<br>
@@ -82,5 +97,11 @@
         <div><textarea id="output" cols="80" rows="20"></textarea></div>
 
         <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="modal/modal.js"></script>
+        <script type="text/javascript">
+            function openWin(){
+                window.open("https://forms.gle/LYEw58uWMVV2UbRaA", null, "width=700,height=720");
+            }
+        </script>
     </body>
 </html>
