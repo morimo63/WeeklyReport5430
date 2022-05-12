@@ -35,10 +35,10 @@ input[type="number"] {
     width: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
-    }
-    
-    .modal-content{
+}
+
+.modal-content{
     background-color: white;
     width: 500px;
     margin: 40% auto;
-    }
+}
