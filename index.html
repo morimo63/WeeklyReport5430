@@ -16,13 +16,15 @@
                         <i class="fas fa-times"></i>
                     </div>
                     <div>
+                        <b>注意!<br>保存機能でローカルストレージを利用していますが、Chromeのみに対応しているため、それ以外のブラウザ(safari)だと更新時に削除されます</b><br>
                         使い方
                         <ul>
-                            <li>週報の内容の週の月曜日を選択し、反映を押す</li>
+                            <li>提出する週の月曜日を選択し、反映を押す</li>
                             <li>実施時間と内容等々を入力する(10時ちょうどなら分の部分は、0または空白でおけ)</li>
                             <li>休みの場合は、時間は空白でおけ</li>
-                            <li>サイト上部にあるgmailリンクから飛び先週の総研究時間を確認し、研究時間に入力する(要改善)</li>
+                            <li>総研究時間は、gmailリンクから飛び先週の総研究時間を確認し、研究時間に入力する(要改善)</li>
                             <li>作成を押すと週報のタイトルと内容が最後のテキストボックスに表示される</li>
+                            <li>保存ボタンを押下すると保存します(小泉構文)</li>
                         </ul>
                     </div>
                     <div>
@@ -34,6 +36,7 @@
         </header>
         <div>
             <input type="date" id="dateData">からの週報 <input type="button" value="反映" id="dateBtn">
+            <input type="button" value="保存" onClick="saveReport()">
         </div>
         <div>
             【活動内容】<br>
@@ -95,8 +98,10 @@
         </div>
         <div><input type="button" id="createButton" value="作成"></div>
         <div><textarea id="output" cols="80" rows="20"></textarea></div>
+        <input type="button" id="resetButton" value="リセット">
 
         <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="localStorage.js"></script>
         <script type="text/javascript" src="modal/modal.js"></script>
         <script type="text/javascript">
             function openWin(){

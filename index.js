@@ -12,12 +12,47 @@ document.getElementById('dateBtn').addEventListener('click',() => {
     prevWeek = new Date(dateText[0],dateText[1]-1,dateText[2]);//var prevWeek = new Date(2022,5,24);
 
     for (let i=0; i<5; i++) {
-        let displayData = (prevWeek.getMonth()+1)+"月"+prevWeek.getDate()+"日";
+        let displayData = (prevWeek.getMonth()+1)+"月"+prevWeek.getDate()+"日"+dayOfWeek[i];
         let displayField = "date"+(i+1);
         document.getElementById(displayField).innerText = displayData;
         prevWeek.setDate(prevWeek.getDate() + 1);
     }
     prevWeek.setDate(prevWeek.getDate() -5);
+});
+
+document.getElementById('resetButton').addEventListener('click',() => {
+    if(window.confirm("リセットしますか？(ローカルストレージも消えます)")){
+        document.getElementById("dateData").value = "";
+        for (let i=0; i<5; i++){
+            let date = "date"+(i+1);
+            document.getElementById(date).textContent = "　月　日(　)";
+
+            let sHT = "startHour"+(i+1);
+            let eHT = "endHour"+(i+1);
+            let sMT = "startMinute"+(i+1);
+            let eMT = "endMinute"+(i+1);
+            document.getElementById(sHT).value = "";
+            document.getElementById(sMT).value = "";
+            document.getElementById(eHT).value = "";
+            document.getElementById(eMT).value = "";
+            let task = "task"+(i+1);
+            document.getElementById(task).value = "";
+            let went = "went"+(i+1);
+            document.getElementById(went).checked = false;
+            let rest = "rest"+(i+1);
+            if(document.getElementById(rest).checked){
+                document.getElementById(task).readOnly = false;
+                document.getElementById(task).style.backgroundColor = 'white';
+            }
+            document.getElementById(rest).checked = false;
+        }
+        document.getElementById("totalHour").value = "";
+        document.getElementById("totalMinute").value = "";
+        document.getElementById("study").value = "";
+        document.getElementById("schedule").value = "今週は、";
+
+        resetReport();
+    }
 });
 
 
@@ -64,6 +99,7 @@ document.getElementById('createButton').addEventListener('click',() => {
     document.getElementById('output').value = output;
     prevWeek.setDate(prevWeek.getDate() - 5);
     // console.log(output);
+    registerReport();
 });
 
 let hour =0;
@@ -112,3 +148,4 @@ function setRest(value){
         document.getElementById(task).style.backgroundColor = 'white';
     }
 }
+
