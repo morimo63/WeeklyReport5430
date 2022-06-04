@@ -25,7 +25,7 @@ document.getElementById('createButton').addEventListener('click',() => {
     addTime();
     let output = "";
     prevWeek.setDate(prevWeek.getDate() + 7);
-    output = "週報("+prevWeek.getFullYear()+"年"+(prevWeek.getMonth()+1) +"月"+prevWeek.getDate()+"日)\n";
+    output = "週報("+prevWeek.getFullYear()+"年"+(prevWeek.getMonth()+1) +"月"+prevWeek.getDate()+"日)(名前)\n";
     output += "（先生の名前）先生\n\n";
     output += "お世話になっております。\n（研究室名）研究室（学年）の（名前）です。\n";
     prevWeek.setDate(prevWeek.getDate() - 7);
