@@ -6,6 +6,12 @@ textarea{
     width: 80%;
 }
 
+#saveBtn{
+    top: 10px;
+    right: 10px;
+    position: fixed;
+}
+
 @media screen and (max-width: 480px){
     textarea{
         width: 90%;

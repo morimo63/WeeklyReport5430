@@ -16,7 +16,7 @@
                         <i class="fas fa-times"></i>
                     </div>
                     <div>
-                        <b>注意!<br>保存機能でローカルストレージを利用していますが、Chromeのみに対応しているため、それ以外のブラウザ(safari)だと更新時に削除されます</b><br>
+                        <b>注意!<br>保存機能はローカルストレージを利用していてChromeに対応してます。Safariだと更新すると入力内容が消し飛びます</b><br>
                         使い方
                         <ul>
                             <li>提出する週の月曜日を選択し、反映を押す</li>
@@ -28,7 +28,7 @@
                         </ul>
                     </div>
                     <div>
-                    <input type="button" value="改善・修正・バグ報告" onClick="openWin()"></input>
+                    <input type="button" value="改善・バグ報告" onClick="openWin()"></input>
                     </div>
                 </div>
                 <div class="black-background" id="js-black-bg"></div>
@@ -36,7 +36,7 @@
         </header>
         <div>
             <input type="date" id="dateData">からの週報 <input type="button" value="反映" id="dateBtn">
-            <input type="button" value="保存" onClick="saveReport()">
+            <input type="button" id="saveBtn" value="保存" onClick="saveReport()">
         </div>
         <div>
             【活動内容】<br>
