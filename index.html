@@ -16,7 +16,7 @@
                         <i class="fas fa-times"></i>
                     </div>
                     <div>
-                        <b>注意!<br>保存機能はローカルストレージを利用していてChromeに対応してます。Safariだと更新すると入力内容が消し飛びます</b><br>
+                        <b>注意!<br>保存機能はローカルストレージを利用していてChromeには対応してます。Safariだと更新時に入力内容が消し飛びます</b><br><br>
                         使い方
                         <ul>
                             <li>提出する週の月曜日を選択し、反映を押す</li>
@@ -34,8 +34,25 @@
                 <div class="black-background" id="js-black-bg"></div>
             </div>
         </header>
+
+        <details><summary><strong>初期設定</strong></summary>
+            <ul id="ini">
+                <li>自分の学年：<input type="text" placeholder="M2,M1,B4" id="yourYear"></li>
+                <li>自分の名前：<input type="text" placeholder="江戸川コナン" id="yourName"></li>
+                <li>先生の名字：<input type="text" placeholder="阿笠" id="teacherName"></li>
+                <li>研究室名　：<input type="text" placeholder="〇〇研究室" id="belonging"></li>
+                <li>括弧の形　：
+                    <select id="brackets">
+                        <option selected value="bra-1">()</option>
+                        <option value="bra-2">[]</option>
+                        <option value="bra-3">【】</option>
+                    </select>
+                </li>
+            </ul>
+        </details>
+
         <div>
-            <input type="date" id="dateData">からの週報 <input type="button" value="反映" id="dateBtn">
+            <input type="date" id="dateData">からの週報 <input type="button" value="日付を反映" id="dateBtn">
             <input type="button" id="saveBtn" value="保存" onClick="saveReport()">
         </div>
         <div>
@@ -86,19 +103,22 @@
         </div>
         <div>
             【研究時間】前回まで<input type="number" id="totalHour" class="inputfield">時<input type="number" id="totalMinute" class="inputfield">分
-            <a href="https://mail.google.com/mail/" target="blank">gmail</a>
         </div>
         <div>
-            【読んだ論文】(論文誌、Vol.巻、No.号、pp.ページ数、年)<br>
+            【読んだ論文】<!-- (論文誌、Vol.巻、No.号、pp.ページ数、年) --><br>
             <textarea id="study" rows="4" cols="80"></textarea>
         </div>
         <div>
             【今週の予定】<br>
-            <textarea id="schedule" name="" rows="2" cols="80">今週は、</textarea>
+            <textarea id="schedule" name="" rows="2" cols="80"></textarea>
         </div>
-        <div><input type="button" id="createButton" value="作成"></div>
+        <div>
+            <input type="button" id="createButton" value="作成">
+            <a href="https://mail.google.com/mail/" target="blank">Gmail</a>
+        </div>
         <div><textarea id="output" cols="80" rows="20"></textarea></div>
         <input type="button" id="resetButton" value="リセット">
+        <input type="button" id="nextWeekBtn" value="次の週報へ">
 
         <script type="text/javascript" src="index.js"></script>
         <script type="text/javascript" src="localStorage.js"></script>

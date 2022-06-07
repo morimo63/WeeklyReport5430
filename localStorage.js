@@ -10,71 +10,40 @@ function loadReport(){
         let json = JSON.parse(localStorage.getItem("date"));
         prevWeek = new Date(json.date);
 
+        document.getElementById("yourYear").value = json.account.yourYear;
+        document.getElementById("yourName").value = json.account.yourName;
+        document.getElementById("teacherName").value = json.account.teacherName;
+        document.getElementById("belonging").value = json.account.belonging;
+        document.getElementById("brackets").selectedIndex = json.account.brackets;
+
         document.getElementById("dateData").value = json.date[0]+"-"+("0"+json.date[1]).slice(-2)+"-"+("0"+json.date[2]).slice(-2);
-        document.getElementById("date1").textContent = json.date[1] +"月"+json.date[2]+"日(月)";
-        document.getElementById("startHour1").value = json.date1.time[0];
-        document.getElementById("startMinute1").value = json.date1.time[1];
-        document.getElementById("endHour1").value = json.date1.time[2];
-        document.getElementById("endMinute1").value = json.date1.time[3];
-        document.getElementById("task1").value = json.date1.task;
-        document.getElementById("went1").checked = json.date1.went;
-        document.getElementById("rest1").checked = json.date1.rest;
-        if(json.date1.rest){
-            document.getElementById("task1").readOnly = true;
-            document.getElementById("task1").style.backgroundColor = '#eee';
+
+        for(let i=0;i<5;i++){
+            let day = "date"+(i+1);
+            let sH = "startHour"+(i+1);
+            let sM = "startMinute"+(i+1);
+            let eH = "endHour"+(i+1);
+            let eM = "endMinute"+(i+1);
+            let task = "task"+(i+1);
+            let went = "went"+(i+1);
+            let rest = "rest"+(i+1);
+            document.getElementById(day).textContent = (prevWeek.getMonth()+1)+"月"+prevWeek.getDate()+"日"+dayOfWeek[i];
+            document.getElementById(sH).value = json[day].time[0];
+            document.getElementById(sM).value = json[day].time[1];
+            document.getElementById(eH).value = json[day].time[2];
+            document.getElementById(eM).value = json[day].time[3];
+            document.getElementById(task).value = json[day].task;
+            document.getElementById(went).checked = json[day].went;
+            document.getElementById(rest).checked = json[day].rest;
+            if(json[day].rest){
+                document.getElementById(task).readOnly = true;
+                document.getElementById(task).style.backgroundColor = '#eee';
+            }
+            prevWeek.setDate(prevWeek.getDate() +1);
         }
 
-        document.getElementById("date2").textContent = json.date[1] +"月"+(json.date[2]+1)+"日(火)";
-        document.getElementById("startHour2").value = json.date2.time[0];
-        document.getElementById("startMinute2").value = json.date2.time[1];
-        document.getElementById("endHour2").value = json.date2.time[2];
-        document.getElementById("endMinute2").value = json.date2.time[3];
-        document.getElementById("task2").value = json.date2.task;
-        document.getElementById("went2").checked = json.date2.went;
-        document.getElementById("rest2").checked = json.date2.rest;
-        if(json.date2.rest){
-            document.getElementById("task2").readOnly = true;
-            document.getElementById("task2").style.backgroundColor = '#eee';
-        }
-
-        document.getElementById("date3").textContent = json.date[1] +"月"+(json.date[2]+2)+"日(水)";
-        document.getElementById("startHour3").value = json.date3.time[0];
-        document.getElementById("startMinute3").value = json.date3.time[1];
-        document.getElementById("endHour3").value = json.date3.time[2];
-        document.getElementById("endMinute3").value = json.date3.time[3];
-        document.getElementById("task3").value = json.date3.task;
-        document.getElementById("went3").checked = json.date3.went;
-        document.getElementById("rest3").checked = json.date3.rest;
-        if(json.date3.rest){
-            document.getElementById("task3").readOnly = true;
-            document.getElementById("task3").style.backgroundColor = '#eee';
-        }
-
-        document.getElementById("date4").textContent = json.date[1] +"月"+(json.date[2]+3)+"日(木)";
-        document.getElementById("startHour4").value = json.date4.time[0];
-        document.getElementById("startMinute4").value = json.date4.time[1];
-        document.getElementById("endHour4").value = json.date4.time[2];
-        document.getElementById("endMinute4").value = json.date4.time[3];
-        document.getElementById("task4").value = json.date4.task;
-        document.getElementById("went4").checked = json.date4.went;
-        document.getElementById("rest4").checked = json.date4.rest;
-        if(json.date4.rest){
-            document.getElementById("task4").readOnly = true;
-            document.getElementById("task4").style.backgroundColor = '#eee';
-        }
-
-        document.getElementById("date5").textContent = json.date[1] +"月"+(json.date[2]+4)+"日(金)";
-        document.getElementById("startHour5").value = json.date5.time[0];
-        document.getElementById("startMinute5").value = json.date5.time[1];
-        document.getElementById("endHour5").value = json.date5.time[2];
-        document.getElementById("endMinute5").value = json.date5.time[3];
-        document.getElementById("task5").value = json.date5.task;
-        document.getElementById("went5").checked = json.date5.went;
-        document.getElementById("rest5").checked = json.date5.rest;
-        if(json.date5.rest){
-            document.getElementById("task5").readOnly = true;
-            document.getElementById("task5").style.backgroundColor = '#eee';
-        }
+        prevWeek.setDate(prevWeek.getDate() -5);
+        // console.log((prevWeek.getMonth()+1)+"月"+prevWeek.getDate()+"日");
 
         document.getElementById("totalHour").value = json.total[0];
         document.getElementById("totalMinute").value = json.total[1];
@@ -85,36 +54,33 @@ function loadReport(){
 
 //localStorage用登録メソッド
 function saveReport(){
-    window.alert("保存しました");
-    let input = {date:[],date1:{time:[],task:"",went:false,rest:false},date2:{time:[],task:"",went:false,rest:false},date3:{time:[],task:"",went:false,rest:false},date4:{time:[],task:"",went:false,rest:false},date5:{time:[],task:"",went:false,rest:false},total:[],study:"",schedule:""};
+    let input = {account:{yourYear:"",yourName:"",teacherName:"",belonging:"",brackets:0},date:[],date1:{time:[],task:"",went:false,rest:false},date2:{time:[],task:"",went:false,rest:false},date3:{time:[],task:"",went:false,rest:false},date4:{time:[],task:"",went:false,rest:false},date5:{time:[],task:"",went:false,rest:false},total:[],study:"",schedule:""};
+
+    input.account.yourYear = document.getElementById("yourYear").value;
+    input.account.yourName = document.getElementById("yourName").value;
+    input.account.teacherName = document.getElementById("teacherName").value;
+    input.account.belonging = document.getElementById("belonging").value;
+    input.account.brackets = document.getElementById("brackets").selectedIndex;
 
     dateText = document.getElementById('dateData').value.split('-');
     input.date = [Number(dateText[0]),Number(dateText[1]),Number(dateText[2])];
 
-    input.date1.time = [Number(document.getElementById("startHour1").value),Number(document.getElementById("startMinute1").value),Number(document.getElementById("endHour1").value),Number(document.getElementById("endMinute1").value)];
-    input.date1.task = document.getElementById("task1").value;
-    input.date1.went = document.getElementById("went1").checked;
-    input.date1.rest = document.getElementById("rest1").checked;
-
-    input.date2.time = [Number(document.getElementById("startHour2").value),Number(document.getElementById("startMinute2").value),Number(document.getElementById("endHour2").value),Number(document.getElementById("endMinute2").value)];
-    input.date2.task = document.getElementById("task2").value;
-    input.date2.went = document.getElementById("went2").checked;
-    input.date2.rest = document.getElementById("rest2").checked;
-
-    input.date3.time = [Number(document.getElementById("startHour3").value),Number(document.getElementById("startMinute3").value),Number(document.getElementById("endHour3").value),Number(document.getElementById("endMinute3").value)];
-    input.date3.task = document.getElementById("task3").value;
-    input.date3.went = document.getElementById("went3").checked;
-    input.date3.rest = document.getElementById("rest3").checked;
-
-    input.date4.time = [Number(document.getElementById("startHour4").value),Number(document.getElementById("startMinute4").value),Number(document.getElementById("endHour4").value),Number(document.getElementById("endMinute4").value)];
-    input.date4.task = document.getElementById("task4").value;
-    input.date4.went = document.getElementById("went4").checked;
-    input.date4.rest = document.getElementById("rest4").checked;
-
-    input.date5.time = [Number(document.getElementById("startHour5").value),Number(document.getElementById("startMinute5").value),Number(document.getElementById("endHour5").value),Number(document.getElementById("endMinute5").value)];
-    input.date5.task = document.getElementById("task5").value;
-    input.date5.went = document.getElementById("went5").checked;
-    input.date5.rest = document.getElementById("rest5").checked;
+    for(let i=0;i<5;i++){
+        let day = "date"+(i+1);
+        let sH = "startHour"+(i+1);
+        let sM = "startMinute"+(i+1);
+        let eH = "endHour"+(i+1);
+        let eM = "endMinute"+(i+1);
+        let task = "task"+(i+1);
+        let went = "went"+(i+1);
+        let rest = "rest"+(i+1);
+        if(document.getElementById(sH).value==0 && document.getElementById(sM).value==0 && document.getElementById(eH).value==0 && document.getElementById(sM).value==0)
+            input[day].time =[];
+        else input[day].time = [Number(document.getElementById(sH).value),Number(document.getElementById(sM).value),Number(document.getElementById(eH).value),Number(document.getElementById(eM).value)];
+        input[day].task = document.getElementById(task).value;
+        input[day].went = document.getElementById(went).checked;
+        input[day].rest = document.getElementById(rest).checked;
+    }
 
     input.total = [Number(document.getElementById("totalHour").value),Number(document.getElementById("totalMinute").value)];
     input.study = document.getElementById("study").value;
@@ -122,6 +88,7 @@ function saveReport(){
 
     let json = JSON.stringify(input, undefined, 1);
     localStorage.setItem("date", json);
+    window.alert("保存しました");
 }
 
 function resetReport(){
@@ -130,4 +97,24 @@ function resetReport(){
     // let input = {date:[],date1:{time:[],task:"",went:false,rest:false},date2:{time:[],task:"",went:false,rest:false},date3:{time:[],task:"",went:false,rest:false},date4:{time:[],task:"",went:false,rest:false},date5:{time:[],task:"",went:false,rest:false},total:[],study:"",schedule:""};
     // let json = JSON.stringify(input, undefined, 1);
     // localStorage.setItem("date", json);
+}
+
+function nextReport(){
+    if(localStorage.length == 1){
+        let input = {account:{yourYear:"",yourName:"",teacherName:"",belonging:"",brackets:0},date:[],date1:{time:[],task:"",went:false,rest:false},date2:{time:[],task:"",went:false,rest:false},date3:{time:[],task:"",went:false,rest:false},date4:{time:[],task:"",went:false,rest:false},date5:{time:[],task:"",went:false,rest:false},total:[],study:"",schedule:""};
+
+        input.account.yourYear = document.getElementById("yourYear").value;
+        input.account.yourName = document.getElementById("yourName").value;
+        input.account.teacherName = document.getElementById("teacherName").value;
+        input.account.belonging = document.getElementById("belonging").value;
+        input.account.brackets = document.getElementById("brackets").selectedIndex;
+
+        dateText = document.getElementById('dateData').value.split('-');
+        input.date = [Number(dateText[0]),Number(dateText[1]),Number(dateText[2])];
+
+        input.total = [Number(document.getElementById("totalHour").value),Number(document.getElementById("totalMinute").value)];
+
+        let json = JSON.stringify(input, undefined, 1);
+        localStorage.setItem("date", json);
+    }
 }
